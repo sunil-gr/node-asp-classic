@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS Management</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="happiest_mind_logo.png" alt="Happiest Minds Logo" class="logo">
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav id="main-nav">
+                <a href="#" id="dashboard-link" class="hidden">Catalogs</a>
+                <a href="#" id="courses-link" class="hidden">Courses</a>
+                <a href="#" id="scorm-link" class="hidden">SCORM Packages</a>
+                <a href="#" id="login-link">Login</a>
+                <a href="#" id="register-link">Register</a>
+                <a href="#" id="logout-link" class="hidden">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="app-root">
+        <!-- Auth Forms -->
+        <section id="auth-section">
+            <div class="auth-card">
+                <form id="login-form" class="hidden">
+                    <h2>Login</h2>
+                    <div class="input-group">
+                        <label for="login-username">Username</label>
+                        <div class="input-icon-group">
+                            <span class="input-icon">&#128100;</span>
+                            <input type="text" id="login-username" name="username" placeholder="Username" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password">Password</label>
+                        <div class="input-icon-group">
+                            <span class="input-icon">&#128274;</span>
+                            <input type="password" id="login-password" name="password" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                <form id="register-form" class="hidden">
+                    <h2>Register</h2>
+                    <div class="input-group">
+                        <label for="register-username">Username</label>
+                        <div class="input-icon-group">
+                            <span class="input-icon">&#128100;</span>
+                            <input type="text" id="register-username" name="username" placeholder="Username" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="register-password">Password</label>
+                        <div class="input-icon-group">
+                            <span class="input-icon">&#128274;</span>
+                            <input type="password" id="register-password" name="password" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Dashboard Section (Catalogs) -->
+        <section id="dashboard-section" class="hidden view-section">
+            <div class="section-header">
+                <h2>Dashboard - Catalogs</h2>
+                <button id="new-catalog-btn" class="new-btn" data-form="#catalog-form">Add New Catalog</button>
+            </div>
+            <form id="catalog-form" class="hidden" data-endpoint="catalogs" data-refresh-fn="refreshCatalogs">
+                <input type="hidden" name="id" id="catalog-id-field">
+                <input type="text" name="name" id="catalog-name" placeholder="Catalog Name" required>
+                <textarea name="description" id="catalog-description" placeholder="Catalog Description"></textarea>
+                <label class="checkbox-label"><input type="checkbox" name="isDefault" id="catalog-isDefault"> Is Default Catalog</label>
+                <div class="form-actions">
+                    <button type="submit">Save</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </form>
+            <table id="catalogs-table" class="display" width="100%"></table>
+
+            <!-- Modal for Managing Versions -->
+            <div id="version-modal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h3 id="version-modal-title">Manage Versions</h3>
+                    <ul id="current-versions-list"></ul>
+                    <form id="add-version-form">
+                        <select name="courseId" id="add-version-course-id" required></select>
+                        <button type="submit">Add Version</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="courses-section" class="hidden view-section">
+            <div class="section-header">
+                <h2>Manage Courses</h2>
+                <button id="new-course-btn" class="new-btn" data-form="#course-form">Add New Course</button>
+            </div>
+            <form id="course-form" class="hidden" data-endpoint="courses" data-refresh-fn="refreshCourses">
+                <input type="hidden" name="id" id="course-id-field">
+                <input type="text" name="title" id="course-title" placeholder="Course Title" required>
+                <textarea name="description" id="course-description" placeholder="Course Description"></textarea>
+                <div class="form-actions">
+                    <button type="submit">Save</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </form>
+            <table id="courses-table" class="display" width="100%"></table>
+
+            <!-- Modal for Managing Packages -->
+            <div id="package-modal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h3 id="package-modal-title">Manage SCORM Packages</h3>
+                    <ul id="current-packages-list"></ul>
+                    <form id="add-package-form">
+                        <select name="packageId" id="add-package-id" required></select>
+                        <button type="submit">Add Package</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCORM Packages Section -->
+        <section id="scorm-section" class="hidden view-section">
+            <div class="section-header">
+                <h2>Manage SCORM Packages</h2>
+                <button id="new-scorm-btn" class="new-btn" data-form="#scorm-form">Add New SCORM Package</button>
+            </div>
+            <form id="scorm-form" class="hidden" data-endpoint="scorm-packages" data-refresh-fn="refreshScormPackages">
+                <input type="hidden" name="id" id="scorm-id-field">
+                <input type="text" name="title" id="scorm-title" placeholder="Package Title" required>
+                <input type="text" name="scoObjectId" id="scorm-scoObjectId" placeholder="SCORM Object ID" required>
+                <input type="text" name="path" id="scorm-path" placeholder="Path">
+                <input type="text" name="scoContainerName" id="scorm-scoContainerName" placeholder="Container Name">
+                <div class="form-actions">
+                    <button type="submit">Save</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </form>
+            <table id="scorm-table" class="display" width="100%"></table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Happiest Minds. All rights reserved.</p>
+    </footer>
+
+    <!-- jQuery (required by DataTables) -->
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+      // Hamburger menu toggle
+      document.addEventListener('DOMContentLoaded', function() {
+        var navToggle = document.getElementById('nav-toggle');
+        var mainNav = document.getElementById('main-nav');
+        if (navToggle && mainNav) {
+          navToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('open');
+          });
+        }
+      });
+    </script>
+</body>
+</html> 

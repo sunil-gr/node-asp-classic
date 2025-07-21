@@ -1,0 +1,541 @@
+/* Happiest Minds Color Palette */
+:root {
+    --hm-blue: #007bff;
+    --hm-orange: #fd7e14;
+    --hm-dark-grey: #343a40;
+    --hm-light-grey: #f8f9fa;
+    --hm-text: #495057;
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: var(--hm-light-grey);
+    color: var(--hm-text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-bottom: 3px solid var(--hm-orange);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    height: 40px;
+}
+
+nav a {
+    color: var(--hm-dark-grey);
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: var(--hm-orange);
+}
+
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+    flex-grow: 1;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+footer {
+    background-color: var(--hm-dark-grey);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+/* Forms */
+form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+}
+
+form h2 {
+    margin-top: 0;
+}
+
+input[type="text"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: var(--hm-blue);
+    width: 100%;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none;
+}
+
+/* Dashboard */
+#catalog-list {
+    margin-top: 1rem;
+}
+
+.catalog-item, .course-item, .scorm-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-actions {
+    display: flex;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+.item-actions button {
+    margin-left: 0;
+    padding: 5px 10px;
+    font-size: 12px;
+    width: auto;
+}
+
+button.edit-btn {
+    background-color: var(--hm-orange);
+}
+
+button.delete-btn {
+    background-color: #dc3545; /* A standard red for delete */
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* DataTables Enhancements */
+.dataTables_wrapper {
+    margin-top: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    background: white;
+}
+
+.dataTables_filter input, .dataTables_length select {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+table.dataTable thead th {
+    background-color: var(--hm-dark-grey);
+    color: white;
+}
+
+table.dataTable.display tbody tr.odd {
+    background-color: #f9f9f9;
+}
+
+table.dataTable.display tbody tr.even {
+    background-color: white;
+}
+
+table.dataTable.hover tbody tr:hover {
+    background-color: #f1f1f1 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: var(--hm-blue) !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: var(--hm-blue) !important;
+    color: white !important;
+    border-radius: 4px;
+}
+
+/* Section Header Styles */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.section-header h2 {
+    margin: 0;
+}
+
+button.add-new-btn {
+    width: auto;
+    padding: 8px 15px;
+    font-size: 14px;
+}
+
+/* Form Actions (Save/Cancel buttons) */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 1.5rem;
+}
+
+.form-actions button {
+    width: auto;
+    padding: 8px 20px;
+    font-size: 14px;
+}
+
+/* Styles for the Add Version form in the modal */
+#add-version-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+#add-version-form select {
+    flex-grow: 1;
+    margin: 0;
+}
+
+#add-version-form button {
+    width: auto;
+    padding: 10px 15px;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.new-btn {
+    width: auto;
+    padding: 6px 14px;
+    font-size: 13px;
+    border-radius: 4px;
+    background-color: var(--hm-blue);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-left: 10px;
+}
+
+.new-btn:hover {
+    background-color: var(--hm-orange);
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .header-container, main {
+        max-width: 100%;
+        padding: 1rem;
+    }
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    .section-header button, .section-header .new-btn {
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+}
+
+@media (max-width: 700px) {
+    header, main {
+        padding: 0.5rem;
+    }
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    nav {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    nav a {
+        margin: 0 8px 0 0;
+        font-size: 15px;
+    }
+    .logo {
+        height: 32px;
+    }
+    .section-header h2 {
+        font-size: 1.1rem;
+    }
+    form {
+        padding: 1rem;
+    }
+    .form-actions button, .new-btn {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    .header-container, main {
+        padding: 0.25rem;
+    }
+    .logo {
+        height: 24px;
+    }
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+    nav a {
+        font-size: 13px;
+        margin: 0 4px 0 0;
+    }
+    .section-header h2 {
+        font-size: 1rem;
+    }
+    form {
+        padding: 0.5rem;
+    }
+    .form-actions button, .new-btn {
+        font-size: 11px;
+        padding: 5px 8px;
+    }
+    .modal-content {
+        width: 98vw;
+        min-width: unset;
+        padding: 10px;
+    }
+}
+
+/* Make tables horizontally scrollable on small screens */
+@media (max-width: 700px) {
+    .dataTables_wrapper, table.dataTable {
+        overflow-x: auto;
+        display: block;
+        width: 100%;
+    }
+    table.dataTable {
+        min-width: 600px;
+    }
+}
+
+/* Hamburger menu styles */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    z-index: 1001;
+    position: relative;
+}
+.nav-toggle .bar {
+    width: 28px;
+    height: 4px;
+    background-color: var(--hm-dark-grey);
+    margin: 5px 0;
+    border-radius: 2px;
+    transition: 0.3s;
+    display: block;
+}
+
+@media (max-width: 900px) {
+    .nav-toggle {
+        display: flex;
+    }
+    #main-nav {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        border-radius: 0 0 8px 8px;
+        flex-direction: column;
+        align-items: flex-start;
+        min-width: 160px;
+        padding: 10px 0;
+        display: none;
+        z-index: 1000;
+    }
+    #main-nav.open {
+        display: flex;
+    }
+    #main-nav a {
+        margin: 8px 20px;
+        font-size: 16px;
+        width: 100%;
+    }
+    .header-container {
+        position: relative;
+    }
+}
+
+@media (max-width: 500px) {
+    #main-nav {
+        top: 56px;
+        min-width: 120px;
+    }
+    .nav-toggle {
+        width: 32px;
+        height: 32px;
+    }
+    .nav-toggle .bar {
+        width: 20px;
+        height: 2.5px;
+    }
+}
+
+/* Auth Card Styles */
+.auth-card {
+    max-width: 350px;
+    margin: 3rem auto 2rem auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    padding: 2.5rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.auth-card form {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+}
+
+.auth-card h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--hm-blue);
+}
+
+.input-group {
+    margin-bottom: 1.2rem;
+}
+.input-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+    color: var(--hm-dark-grey);
+    font-weight: 500;
+}
+.input-icon-group {
+    display: flex;
+    align-items: center;
+    background: #f4f6fa;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0 10px;
+}
+.input-icon {
+    font-size: 1.2rem;
+    color: var(--hm-blue);
+    margin-right: 8px;
+}
+.input-icon-group input {
+    border: none;
+    background: transparent;
+    outline: none;
+    flex: 1;
+    padding: 10px 0;
+    font-size: 1rem;
+}
+.auth-card button[type="submit"] {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 10px 0;
+    font-size: 1rem;
+    background: var(--hm-blue);
+    color: #fff;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: background 0.2s;
+}
+.auth-card button[type="submit"]:hover {
+    background: var(--hm-orange);
+}
+
+@media (max-width: 600px) {
+    .auth-card {
+        max-width: 98vw;
+        padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+    }
+} 
