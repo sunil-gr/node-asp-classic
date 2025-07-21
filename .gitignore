@@ -1,0 +1,7 @@
+node_modules/
+# cursorlogs/
+*.log
+.env
+.DS_Store
+npm-debug.log 
+debug_sensitive_counts.json
